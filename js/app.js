@@ -1,3 +1,5 @@
+//----------------------ENEMY------------------------
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -7,6 +9,8 @@ var Enemy = function(x, y, speed) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
+    this.width = 80;
+    this.height = 80;
     this.speed = getRandomInt(75, 250);
     this.sprite = 'images/enemy-bug.png';
 };
@@ -30,6 +34,8 @@ Enemy.prototype.update = function (dt) {
         this.x = -50;
         this.speed = getRandomInt(75, 250);
     };
+
+    this.checkCollision();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -37,6 +43,22 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Source of collision check: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+Enemy.prototype.checkCollision = function() {
+    var rect1 = {x: this.x, y: this.y, width: this.width, height: this.height};
+    var rect2 = {x: player.x, y: player.y, width: player.width, height: player.height};
+
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y) {
+  // collision detected!
+    player.x = 202;
+    player.y = 405;
+}
+};
+
+//----------------------PLAYER------------------------
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -44,6 +66,8 @@ Enemy.prototype.render = function() {
 var Player = function (x, y) {
     this.x = x;
     this.y = y;
+    this.width = 70;
+    this.height = 70;
     this.player = 'images/char-pink-girl.png';
 }
 
