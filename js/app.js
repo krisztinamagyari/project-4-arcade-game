@@ -55,6 +55,7 @@ Enemy.prototype.checkCollision = function() {
   // collision detected!
     player.x = 202;
     player.y = 405;
+    allLives.pop();
 }
 };
 
@@ -99,6 +100,30 @@ Player.prototype.handleInput = function (keyPress) {
         }, 600);
     }
 };
+
+//----------------------HEARTS / LIVES ------------------------
+var Life = function (x, y) {
+    this.x = x;
+    this.y = y;
+    this.life = 'images/Heart.png';
+}
+
+Life.prototype.update = function (dt) {
+};
+
+Life.prototype.render = function() {
+      ctx.drawImage(Resources.get(this.life), this.x, this.y, 40, 55);
+};
+
+var Lifescore = function() {
+};
+
+Lifescore.prototype.render = function () {
+  ctx.fillStyle = "white";
+  ctx.font = "30px Arial";
+  ctx.fillText("Lives: ", 260, 575);
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -112,7 +137,15 @@ enemyLocation.forEach(function (locationY) {
 
 var player = new Player(202, 405);
 
+var allLives = [];
+var lifeLocation = [360, 410, 460];
 
+lifeLocation.forEach(function (locationX) {
+    life = new Life(locationX, 535)
+    allLives.push(life);
+});
+
+var lifescore = new Lifescore;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
