@@ -73,6 +73,13 @@ var Player = function (x, y) {
 }
 
 Player.prototype.update = function (dt) {
+    if (allLives.length === 0) {
+        lostGamePopup();
+    }
+
+    if (this.y < 0) {
+        congratsPopup();
+    }
 };
 
 Player.prototype.render = function() {
@@ -91,13 +98,6 @@ Player.prototype.handleInput = function (keyPress) {
     }
     if (keyPress == 'down' && this.y < 405) {
         this.y += 83;
-    }
-
-    if (this.y < 0) {
-        setTimeout(function () {
-            player.x = 202;
-            player.y = 405;
-        }, 600);
     }
 };
 
@@ -123,6 +123,27 @@ Lifescore.prototype.render = function () {
   ctx.font = "30px Arial";
   ctx.fillText("Lives: ", 260, 575);
 };
+
+//----------------------END OF GAME MESSAGES ------------------------
+function congratsPopup() {
+
+    popup.style.visibility = 'visible'; //popup will display with game details//
+    //display moves taken on the popup//
+    document.getElementById("resultMessage").innerHTML = 'Congratulation! You won!';
+    //display the time taken on the popup//
+    allEnemies = "";
+
+}
+
+function lostGamePopup() {
+
+    popup.style.visibility = 'visible'; //popup will display with game details//
+    //display moves taken on the popup//
+    document.getElementById("resultMessage").innerHTML = 'You have lost all your lives.';
+    //display the time taken on the popup//
+    allLives = "";
+
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
