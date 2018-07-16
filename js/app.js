@@ -52,11 +52,11 @@ Enemy.prototype.checkCollision = function() {
         rect1.x + rect1.width > rect2.x &&
         rect1.y < rect2.y + rect2.height &&
         rect1.height + rect1.y > rect2.y) {
-  // collision detected!
+    // collision detected!
     player.x = 202;
     player.y = 405;
     allLives.pop();
-}
+    }
 };
 
 //----------------------PLAYER------------------------
@@ -119,30 +119,24 @@ var Lifescore = function() {
 };
 
 Lifescore.prototype.render = function () {
-  ctx.fillStyle = "white";
-  ctx.font = "30px Arial";
-  ctx.fillText("Lives: ", 260, 575);
+    ctx.fillStyle = "white";
+    ctx.font = "30px Arial";
+    ctx.fillText("Lives: ", 260, 575);
 };
 
 //----------------------END OF GAME MESSAGES ------------------------
 function congratsPopup() {
-
-    popup.style.visibility = 'visible'; //popup will display with game details//
-    //display moves taken on the popup//
+    //popup will display with result of game//
+    popup.style.visibility = 'visible';
     document.getElementById("resultMessage").innerHTML = 'Congratulation! You won!';
-    //display the time taken on the popup//
     allEnemies = "";
-
 }
 
 function lostGamePopup() {
-
-    popup.style.visibility = 'visible'; //popup will display with game details//
-    //display moves taken on the popup//
+    //popup will display with result of game//
+    popup.style.visibility = 'visible';
     document.getElementById("resultMessage").innerHTML = 'You have lost all your lives.';
-    //display the time taken on the popup//
     allLives = "";
-
 }
 
 // Now instantiate your objects.

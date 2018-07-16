@@ -14,6 +14,8 @@ The player can move left, right, up and down with the arrow keys. The enemies mo
 
 ## Resources used to create the game
 Starter code from Udacity: https://github.com/udacity/frontend-nanodegree-arcade-game
+Randomized speed: //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+Collision detection: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 
 ## Licences
 The content of this repository is free and is licensed under a [MIT License](https://choosealicense.com/licenses/mit/).
